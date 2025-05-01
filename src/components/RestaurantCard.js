@@ -6,20 +6,25 @@ const RestaurantCard = (props) => {
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
     resData.info;
   return (
-    <div className="res-card">
-      <div className="res-card-img">
-        <img className="card-img" src={CDN_URL + cloudinaryImageId} />
+    <div className="res-card p-2 bg-white max-w-[245px] rounded-xl flex flex-col gap-1 shadow-md transition-transform duration-400 hover:scale-95 hover:shadow-lg">
+      <div className="res-card-img flex justify-center mb-1">
+        <img
+          className="card-img w-[245px] h-[150px] rounded-xl "
+          src={CDN_URL + cloudinaryImageId}
+        />
       </div>
-      <div className="res-card-name">
-        <h4 className="res-card-name">{name}</h4>
-      </div>
-      <p className="cost-two">{costForTwo}</p>
-      <div className="res-rate-time">
-        <img className="rating-icon" src={RATING_ICON} />
-        <p className="res-ratings">{avgRating}</p>
+      <div className="res-card-name truncate font-semibold">{name}</div>
+      <p className="cost-two ml-2 text-sm font-semibold text-red-600">
+        {costForTwo}
+      </p>
+      <div className="res-rate-time flex text-sm items-center">
+        <img className="rating-icon w-[18px] mr-0.5" src={RATING_ICON} />
+        <p className="res-ratings mr-2">{avgRating}</p>
         <p className="res-timing">{sla.slaString}</p>
       </div>
-      <p className="res-cuisine">{cuisines.join(", ")}</p>
+      <p className="res-cuisine truncate text-gray-500 text-xs">
+        {cuisines.join(", ")}
+      </p>
     </div>
   );
 };
