@@ -48,7 +48,7 @@ const Header = () => {
             <li className="p-2 hover:text-red-600 flex items-center gap-1 relative">
               Cart
               <div className="relative">
-                <MdShoppingBag className="text-[20px] text-gray-800 " />
+                <MdShoppingBag className="text-[20px] text-gray-800 hover:text-red-600" />
                 {cartItems.length > 0 && (
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {cartItems.length}

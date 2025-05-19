@@ -44,7 +44,7 @@ const FilterButtons = ({ restaurantList, setFilteredRestaurants }) => {
       </button>
 
       <button
-        className={`border rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
+        className={`border-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
           activeFilter === "Rating 4.0+"
             ? "border-red-500 bg-gray-200"
             : "border-gray-300 bg-white hover:bg-gray-100"
@@ -55,7 +55,7 @@ const FilterButtons = ({ restaurantList, setFilteredRestaurants }) => {
       </button>
 
       <button
-        className={`border rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
+        className={`border-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
           activeFilter === "Fast Delivery"
             ? "border-red-500 bg-gray-200"
             : "border-gray-300 bg-white hover:bg-gray-100"
@@ -75,7 +75,7 @@ const FilterButtons = ({ restaurantList, setFilteredRestaurants }) => {
       ].map((c) => (
         <button
           key={c}
-          className={`border rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
+          className={`border-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
             activeFilter === c
               ? "border-red-500 bg-gray-200"
               : "border-gray-300 bg-white hover:bg-gray-100"

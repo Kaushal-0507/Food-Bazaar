@@ -35,7 +35,7 @@ const Body = () => {
       {/* Landing Image Section */}
       <div className="flex justify-center my-5 mb-10">
         <img
-          className="w-[996px] h-[380px] rounded-[40px] object-cover border-2 border-red-700"
+          className="w-[996px] h-[380px] rounded-[40px] object-cover"
           src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/m/seo/Food_collectionbanner.png"
           alt="Food collection banner"
         />

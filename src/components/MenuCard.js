@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { MENU_CARD_IMG } from "../utils/constants";
-import { addItem } from "../utils/cartSlice";
+import { addItem, removeItem } from "../utils/cartSlice";
+
 const MenuCard = (props) => {
   const { menuData, flag } = props;
+  const [quantity, setQuantity] = useState(0);
 
   const {
     name,
@@ -19,7 +22,24 @@ const MenuCard = (props) => {
 
   const handleAddItem = (menuData) => {
     dispatch(addItem(menuData));
+    setQuantity(1);
   };
+
+  const handleIncreaseQuantity = () => {
+    setQuantity(quantity + 1);
+    dispatch(addItem(menuData));
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (quantity === 1) {
+      setQuantity(0);
+      dispatch(removeItem(menuData?.card?.info?.id));
+    } else if (quantity > 1) {
+      setQuantity(quantity - 1);
+      dispatch(removeItem(menuData?.card?.info?.id));
+    }
+  };
+
   return (
     <div className="menu-card-div flex w-[750px] justify-center items-center py-4">
       <div className="menu-card-info-div w-[580px]">
@@ -74,12 +94,32 @@ const MenuCard = (props) => {
       </div>
       <div className="relative">
         {!flag ? (
-          <button
-            onClick={() => handleAddItem(menuData)}
-            className="cursor-pointer absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 p-1.5 rounded-[8px] bg-white border-gray-300 border-[1px] px-10 font-bold text-[#1ba672] text-[18px] hover:bg-gray-100"
-          >
-            ADD
-          </button>
+          <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2">
+            {quantity === 0 ? (
+              <button
+                onClick={() => handleAddItem(menuData)}
+                className="cursor-pointer p-1.5 rounded-[8px] bg-white border-gray-300 border-[1px] px-10 font-bold text-[#1ba672] text-[18px] hover:bg-gray-200"
+              >
+                ADD
+              </button>
+            ) : (
+              <div className="flex items-center p-0.5 justify-center bg-white gap-2 border-gray-300 border-[1px] rounded-[8px]">
+                <button
+                  onClick={handleDecreaseQuantity}
+                  className="text-[#1ba672]  cursor-pointer text-[24px] font-bold px-3 hover:bg-gray-200 rounded-l-[8px] "
+                >
+                  -
+                </button>
+                <span className="px-2 text-[18px] font-medium">{quantity}</span>
+                <button
+                  onClick={handleIncreaseQuantity}
+                  className="text-[#1ba672]  cursor-pointer text-[24px] font-bold px-3 hover:bg-gray-200 rounded-r-[8px] "
+                >
+                  +
+                </button>
+              </div>
+            )}
+          </div>
         ) : null}
 
         <img
