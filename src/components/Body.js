@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Slider from "./Slider";
 import { Link } from "react-router-dom";
 import { RESTAURANT_API } from "../utils/constants";
+import FilterButtons from "./FilterButtons";
 
 const Body = () => {
   const [restaurantList, setRestaurantLists] = useState([]);
@@ -34,7 +35,7 @@ const Body = () => {
       {/* Landing Image Section */}
       <div className="flex justify-center my-5 mb-10">
         <img
-          className="w-[996px] h-[380px] rounded-[40px] object-cover"
+          className="w-[996px] h-[380px] rounded-[40px] object-cover border-2 border-red-700"
           src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/m/seo/Food_collectionbanner.png"
           alt="Food collection banner"
         />
@@ -69,64 +70,10 @@ const Body = () => {
           <p>Restaurants</p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex gap-4 ml-[150px] mb-6">
-          <button
-            className="border border-gray-300 rounded-full px-4 py-2 text-sm font-semibold bg-white hover:bg-gray-100 transition-colors"
-            onClick={() => {
-              const filteredList = restaurantList.filter(
-                (res) => res.info.avgRating >= 4
-              );
-              setFilteredRestaurants(filteredList);
-            }}
-          >
-            Rating 4.0+
-          </button>
-          <button
-            className="border border-gray-300 rounded-full px-4 py-2 text-sm font-semibold bg-white hover:bg-gray-100 transition-colors"
-            onClick={() => {
-              const filteredList = restaurantList.filter(
-                (res) => res.info.sla.deliveryTime <= 20
-              );
-              setFilteredRestaurants(filteredList);
-            }}
-          >
-            Fast Delivery
-          </button>
-          <button
-            className="border border-gray-300 rounded-full px-4 py-2 text-sm font-semibold bg-white hover:bg-gray-100 transition-colors"
-            onClick={() => {
-              const filteredList = restaurantList.filter(
-                (res) => res.info.avgRating >= 4
-              );
-              setFilteredRestaurants(filteredList);
-            }}
-          >
-            Pure Veg
-          </button>
-          <button
-            className="border border-gray-300 rounded-full px-4 py-2 text-sm font-semibold bg-white hover:bg-gray-100 transition-colors"
-            onClick={() => {
-              const filteredList = restaurantList.filter(
-                (res) => res.info.avgRating >= 4
-              );
-              setRestaurantLists(filteredList);
-            }}
-          >
-            Rs. 300-Rs. 400
-          </button>
-          <button
-            className="border border-gray-300 rounded-full px-4 py-2 text-sm font-semibold bg-white hover:bg-gray-100 transition-colors"
-            onClick={() => {
-              const filteredList = restaurantList.filter(
-                (res) => res.info.avgRating >= 4
-              );
-              setRestaurantLists(filteredList);
-            }}
-          >
-            Less than Rs. 300
-          </button>
-        </div>
+        <FilterButtons
+          restaurantList={restaurantList}
+          setFilteredRestaurants={setFilteredRestaurants}
+        />
 
         {/* Restaurant Cards Grid */}
         <div className="flex flex-wrap gap-4 px-12 justify-center">
