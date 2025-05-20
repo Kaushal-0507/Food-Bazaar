@@ -5,6 +5,8 @@ import Slider from "./Slider";
 import { Link } from "react-router-dom";
 import { RESTAURANT_API } from "../utils/constants";
 import FilterButtons from "./FilterButtons";
+import About from "./About";
+import ContactUs from "./ContactUs";
 
 const Body = () => {
   const [restaurantList, setRestaurantLists] = useState([]);

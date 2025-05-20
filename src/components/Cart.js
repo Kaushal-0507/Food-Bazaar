@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import MenuCard from "./MenuCard";
+import CartInvoice from "./CartInvoice";
 import { clearCart } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
+import CartItems from "./CartItems";
 // import shoppingCart from "./shoppingCart.png";
 
 const Cart = () => {
@@ -35,20 +37,26 @@ const Cart = () => {
   }
 
   return (
-    <div className="w-[800px] m-auto">
-      <div className="flex justify-between m-auto items-center">
-        <div className="font-bold text-2xl">Cart</div>
-        <div
-          onClick={handleClearCart}
-          className="p-1.5 border-2 font-bold cursor-pointer hover:border-red-600 hover:text-red-600 transition-colors duration-300"
-        >
-          Clear Cart
+    <div className="flex justify-between mx-4 gap-6">
+      <div className="w-[820px]  p-2.5">
+        <div className="flex justify-between px-1.5">
+          <div className="font-bold text-2xl">Cart</div>
+          <div
+            onClick={handleClearCart}
+            className="p-1 border-2 font-bold cursor-pointer hover:border-red-600 hover:text-red-600 transition-colors duration-300"
+          >
+            Clear Cart
+          </div>
+        </div>
+
+        <div className="w-[800px] flex flex-col ">
+          {cartItems.map((item, index) => (
+            <CartItems key={index} menuData={item} />
+          ))}
         </div>
       </div>
-      <div className="w-[800px] flex flex-col items-center ">
-        {cartItems.map((item, index) => (
-          <MenuCard key={index} menuData={item} flag={true} />
-        ))}
+      <div className="md:w-1/3">
+        <CartInvoice />
       </div>
     </div>
   );

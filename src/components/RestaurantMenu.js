@@ -64,7 +64,7 @@ const RestaurantMenu = () => {
               {avgRating} - {costForTwoMessage?.toUpperCase()}
             </p>
           </div>
-          <div className="cuisines text-sm text-orange-500 underline font-semibold pb-2 pl-0.5">
+          <div className="cuisines text-sm text-red-600 underline font-semibold pb-2 pl-0.5">
             {cuisines?.join(", ") || "Cuisines not available"}
           </div>
           <div className="delivery-time text-sm font-semibold pl-0.5 pb-5">

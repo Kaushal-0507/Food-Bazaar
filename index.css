@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
 body {
-  @apply box-border m-0 p-0 font-sans overflow-y-scroll mt-[90px];
+  @apply box-border m-0 p-0 font-sans overflow-y-scroll mt-[70px];
 }
-/* 
-body::-webkit-scrollbar {
-  display: none;
-} */

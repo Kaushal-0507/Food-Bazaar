@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MENU_CARD_IMG } from "../utils/constants";
 import { addItem, removeItem } from "../utils/cartSlice";
 
 const MenuCard = (props) => {
   const { menuData, flag } = props;
-  const [quantity, setQuantity] = useState(0);
 
   const {
+    id,
     name,
     imageId,
     description,
@@ -19,25 +18,20 @@ const MenuCard = (props) => {
   } = menuData?.card?.info;
 
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
 
-  const handleAddItem = (menuData) => {
+  const cartItem = cartItems.find((item) => item.card.info.id === id);
+  const quantity = cartItem ? cartItem.quantity : 0;
+  const handleAddItem = () => {
     dispatch(addItem(menuData));
-    setQuantity(1);
   };
 
   const handleIncreaseQuantity = () => {
-    setQuantity(quantity + 1);
     dispatch(addItem(menuData));
   };
 
   const handleDecreaseQuantity = () => {
-    if (quantity === 1) {
-      setQuantity(0);
-      dispatch(removeItem(menuData?.card?.info?.id));
-    } else if (quantity > 1) {
-      setQuantity(quantity - 1);
-      dispatch(removeItem(menuData?.card?.info?.id));
-    }
+    dispatch(removeItem(id));
   };
 
   return (
@@ -106,7 +100,7 @@ const MenuCard = (props) => {
               <div className="flex items-center p-0.5 justify-center bg-white gap-2 border-gray-300 border-[1px] rounded-[8px]">
                 <button
                   onClick={handleDecreaseQuantity}
-                  className="text-[#1ba672]  cursor-pointer text-[24px] font-bold px-3 hover:bg-gray-200 rounded-l-[8px] "
+                  className="text-[#1ba672]  cursor-pointer text-[24px] font-bold px-3.5 hover:bg-gray-200 rounded-l-[8px] "
                 >
                   -
                 </button>

@@ -43,7 +43,9 @@ const Header = () => {
           <li className="p-2 hover:text-red-600">
             <Link to="/about">About Us</Link>
           </li>
-          <li className="p-2 hover:text-red-600">Contact Us</li>
+          <li className="p-2 hover:text-red-600">
+            <Link to="/contact">Contact Us</Link>
+          </li>
           <Link to="/cart">
             <li className="p-2 hover:text-red-600 flex items-center gap-1 relative">
               Cart

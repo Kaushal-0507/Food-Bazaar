@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 import FoodType from "./components/FoodType";
+import ContactUs from "./components/ContactUs";
 
 const About = lazy(() => import("./components/About"));
 
@@ -49,6 +50,15 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<h1>LOADING...........</h1>}>
             <About />
+          </Suspense>
+        ),
+        errorElement: <Error />,
+      },
+      {
+        path: "/contact",
+        element: (
+          <Suspense fallback={<h1>LOADING...........</h1>}>
+            <ContactUs />
           </Suspense>
         ),
         errorElement: <Error />,
