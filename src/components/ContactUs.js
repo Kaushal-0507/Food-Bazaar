@@ -2,7 +2,6 @@ import React from "react";
 import {
   FaHeadset,
   FaMapMarkerAlt,
-  FaEnvelope,
   FaClock,
   FaMobileAlt,
   FaStore,
@@ -18,7 +17,6 @@ const ContactUs = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      {/* Hero Section */}
       <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-lg p-8 mb-8 text-center">
         <h1 className="text-4xl font-bold mb-4">We're Here to Help</h1>
         <p className="text-xl max-w-3xl mx-auto">
@@ -26,9 +24,7 @@ const ContactUs = () => {
         </p>
       </div>
 
-      {/* Contact Options Grid */}
       <div className="grid md:grid-cols-2 gap-8 mb-12">
-        {/* Contact Form */}
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold mb-6 text-gray-800">
             Send Us a Message
@@ -93,7 +89,6 @@ const ContactUs = () => {
           </form>
         </div>
 
-        {/* Contact Information */}
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">
@@ -107,7 +102,7 @@ const ContactUs = () => {
                 <div>
                   <h3 className="font-bold text-lg mb-1">24/7 Customer Care</h3>
                   <p className="text-gray-600">+91 12345 67890</p>
-                  <p className="text-gray-600">support@foodexpress.com</p>
+                  <p className="text-gray-600">support@foodbazaar.com</p>
                 </div>
               </div>
 
@@ -120,7 +115,7 @@ const ContactUs = () => {
                     Restaurant Partners
                   </h3>
                   <p className="text-gray-600">+91 98765 43210</p>
-                  <p className="text-gray-600">partners@foodexpress.com</p>
+                  <p className="text-gray-600">partners@foodbazaar.com</p>
                 </div>
               </div>
 
@@ -131,7 +126,7 @@ const ContactUs = () => {
                 <div>
                   <h3 className="font-bold text-lg mb-1">App Support</h3>
                   <p className="text-gray-600">+91 87654 32109</p>
-                  <p className="text-gray-600">appsupport@foodexpress.com</p>
+                  <p className="text-gray-600">appsupport@foodbazaar.com</p>
                 </div>
               </div>
             </div>
@@ -172,7 +167,6 @@ const ContactUs = () => {
         </div>
       </div>
 
-      {/* Map Section */}
       <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
           Find Us on Map
@@ -190,7 +184,6 @@ const ContactUs = () => {
         </div>
       </div>
 
-      {/* Social Media */}
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
           Connect With Us

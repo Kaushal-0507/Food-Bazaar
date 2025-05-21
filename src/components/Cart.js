@@ -43,7 +43,7 @@ const Cart = () => {
           <div className="font-bold text-2xl">Cart</div>
           <div
             onClick={handleClearCart}
-            className="p-1 border-2 font-bold cursor-pointer hover:border-red-600 hover:text-red-600 transition-colors duration-300"
+            className="p-1 border-2 text-[#109e6a] border-[#109e6a] font-bold cursor-pointer hover:border-red-600 hover:text-red-600 transition-colors duration-300"
           >
             Clear Cart
           </div>

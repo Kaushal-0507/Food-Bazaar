@@ -5,8 +5,6 @@ import Slider from "./Slider";
 import { Link } from "react-router-dom";
 import { RESTAURANT_API } from "../utils/constants";
 import FilterButtons from "./FilterButtons";
-import About from "./About";
-import ContactUs from "./ContactUs";
 
 const Body = () => {
   const [restaurantList, setRestaurantLists] = useState([]);
@@ -34,7 +32,6 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="bg-white rounded-lg p-1 pb-3">
-      {/* Landing Image Section */}
       <div className="flex justify-center my-5 mb-10">
         <img
           className="w-[996px] h-[380px] rounded-[40px] object-cover"
@@ -43,14 +40,12 @@ const Body = () => {
         />
       </div>
 
-      {/* Food Slider Section */}
       <div className="w-[996px] mx-auto mb-5">
         <div className="my-5 font-bold text-2xl pl-2.5">
           <p>What's on your mind?</p>
         </div>
         <div className="flex overflow-x-scroll  [&::-webkit-scrollbar]:hidden">
           {foodList.map((food) => {
-            // Extract the ID from food.entityId
             const entityId = food.entityId
               ? Number(food.entityId.match(/collection_id=(\d+)/)?.[1])
               : null;
