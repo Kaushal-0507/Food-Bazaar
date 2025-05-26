@@ -40,7 +40,7 @@ const Body = () => {
         />
       </div>
 
-      <div className="w-[996px] mx-auto mb-5">
+      <div className="max-w-[996px] mx-auto mb-5">
         <div className="my-5 font-bold text-2xl pl-2.5">
           <p>What's on your mind?</p>
         </div>

@@ -31,7 +31,7 @@ const FilterButtons = ({ restaurantList, setFilteredRestaurants }) => {
   };
 
   return (
-    <div className="flex gap-5 ml-[150px] mb-6">
+    <div className="flex gap-5 mx-32 mb-6">
       <button
         className={`border-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
           activeFilter === "All"

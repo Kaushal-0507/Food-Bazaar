@@ -19,9 +19,11 @@ const AppLayout = () => {
   const onlineStatus = uesOnlineStatus();
   if (onlineStatus === false) {
     return (
-      <div className="network-status">
-        <img />
-        <p> You could have network connectivity problem</p>
+      <div className="m-auto">
+        <p className="text-5xl font-bold m-auto">
+          {" "}
+          You could have network connectivity problem
+        </p>
       </div>
     );
   }

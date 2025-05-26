@@ -1,41 +1,76 @@
 import appLogo from "../assets/images/appLogo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { MdShoppingBag } from "react-icons/md";
+import useRestaurantList from "../utils/useRestaurantList";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
+  const [results, setResults] = useState([]);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const cartItems = useSelector((store) => store.cart.items);
+  const restaurantData = useRestaurantList();
+
+  useEffect(() => {
+    const newResults = restaurantData?.cards?.find(
+      (card) =>
+        card?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget"
+    )?.card?.card?.gridElements?.infoWithStyle?.info;
+
+    setResults(newResults || []);
+  }, [restaurantData, searchText]);
+
   return (
-    <div className="flex p-1 justify-evenly items-center bg-white mb-4 border-b border-gray-200 fixed top-0 left-0 right-0 z-10">
-      <div>
-        <Link to="/">
-          <img src={appLogo} className="w-[70px] " />
-        </Link>
+    <div className="flex flex-col md:flex-row p-1 justify-between md:justify-evenly items-center bg-white mb-4 border-b border-gray-200 fixed top-0 left-0 right-0 z-10">
+      <div className="flex justify-between w-full md:w-auto items-center px-4 md:px-0">
+        <div className="flex items-center">
+          <Link to="/">
+            <img src={appLogo} className="w-[70px]" />
+          </Link>
+        </div>
       </div>
-      <div className="search-box flex w-[40%] p-2">
-        <input
-          className="input-box p-2 pl-3 flex-1 text-base bg-gray-200 rounded-l-xl border-none outline-none placeholder:text-gray-500 "
-          type="text"
-          placeholder="Search Food, Restaurants....."
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <button
-          className="p-2 bg-gray-200 text-gray-500 text-base w-20 rounded-r-xl transition-all duration-300 hover: hover:text-red-600"
-          //   onClick={() => {
-          //     const filteredRestaurant = listOfRestaurant.filter((res)=>{
-          //         res.name.toLowerCase().includes(searchText.toLowerCase());
-          //     })
-          //   }}
-        >
-          Search
-        </button>
+
+      <div className="w-full md:w-[40%] px-4 md:px-0 mt-2 md:mt-0">
+        <div className="relative w-full">
+          <input
+            className="w-full p-2 pl-5 text-base bg-gray-200 border-none outline-none placeholder:text-gray-500"
+            type="text"
+            placeholder="Search Food....."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => setTimeout(() => setIsInputFocused(false), 100)}
+          />
+
+          {isInputFocused && results.length > 0 && (
+            <div className="absolute top-full left-0 mt-1 p-2 w-full max-h-[255px] overflow-y-auto bg-gray-200 shadow-lg z-50 hide-scrollbar">
+              {results.map((food) => {
+                const entityId = food.entityId
+                  ? Number(food.entityId.match(/collection_id=(\d+)/)?.[1])
+                  : null;
+                const idToUse = entityId || food.id || food.info?.id;
+
+                return (
+                  <Link
+                    to={`/dish/${idToUse}`}
+                    key={idToUse}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => setIsInputFocused(false)}
+                  >
+                    <p className="pl-3 p-2 hover:bg-white">
+                      {food.action?.text}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
-      <div className="nav-items">
+
+      <div className="nav-items hidden md:block">
         <ul className="flex list-none text-base font-medium">
           <li className="p-2 hover:text-red-600">
             <Link to="/">Home</Link>
