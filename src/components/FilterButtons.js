@@ -31,9 +31,9 @@ const FilterButtons = ({ restaurantList, setFilteredRestaurants }) => {
   };
 
   return (
-    <div className="flex gap-5 mx-32 mb-6">
+    <div className="flex gap-5 mx-8 md:mx-32 mb-6 text-[12px] overflow-x-scroll [&::-webkit-scrollbar]:hidden">
       <button
-        className={`border-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
+        className={`border-2 rounded-full px-4 py-1 md:py-2 md:text-sm font-semibold transition-colors cursor-pointer ${
           activeFilter === "All"
             ? "border-red-500 bg-gray-200"
             : "border-gray-300 bg-white hover:bg-gray-100"
@@ -44,7 +44,7 @@ const FilterButtons = ({ restaurantList, setFilteredRestaurants }) => {
       </button>
 
       <button
-        className={`border-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
+        className={`border-2 rounded-full px-4 py-1 md:py-2 md:text-sm font-semibold transition-colors cursor-pointer ${
           activeFilter === "Rating 4.0+"
             ? "border-red-500 bg-gray-200"
             : "border-gray-300 bg-white hover:bg-gray-100"
@@ -55,7 +55,7 @@ const FilterButtons = ({ restaurantList, setFilteredRestaurants }) => {
       </button>
 
       <button
-        className={`border-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
+        className={`border-2 rounded-full px-4 py-1 md:py-2 md:text-sm font-semibold transition-colors cursor-pointer ${
           activeFilter === "Fast Delivery"
             ? "border-red-500 bg-gray-200"
             : "border-gray-300 bg-white hover:bg-gray-100"
@@ -75,7 +75,7 @@ const FilterButtons = ({ restaurantList, setFilteredRestaurants }) => {
       ].map((c) => (
         <button
           key={c}
-          className={`border-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors cursor-pointer ${
+          className={`border-2 rounded-full px-4 py-1 md:py-2 md:text-sm font-semibold transition-colors cursor-pointer ${
             activeFilter === c
               ? "border-red-500 bg-gray-200"
               : "border-gray-300 bg-white hover:bg-gray-100"

@@ -6,7 +6,7 @@ const RestaurantCard = (props) => {
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
     resData.info;
   return (
-    <div className="res-card p-2 bg-white max-w-[245px] rounded-xl flex flex-col gap-1 shadow-md transition-transform duration-400 hover:scale-95 hover:shadow-lg">
+    <div className="res-card p-2 bg-white w-[245px] rounded-xl flex flex-col gap-1 shadow-md transition-transform duration-400 hover:scale-95 hover:shadow-lg">
       <div className="res-card-img flex justify-center mb-1">
         <img
           className="card-img w-[245px] h-[150px] rounded-xl "

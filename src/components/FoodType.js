@@ -43,15 +43,17 @@ const FoodType = () => {
   console.log(foodRestaurant);
 
   return (
-    <div className="p-2.5">
-      <div className="flex flex-col p-5">
-        <p className="text-[40px] font-bold">{title}</p>
-        <p className="text-[18px] mt-2 mb-2.5 font-semibold text-gray-700">
+    <div className="p-2 md:p-2.5">
+      <div className="flex flex-col p-3 mt-3 md:p-5">
+        <p className="text-3xl md:text-[40px] font-bold">{title}</p>
+        <p className="text-base md:text-[18px] mt-1 md:mt-2 mb-2 md:mb-2.5 font-semibold text-gray-700">
           {description}
         </p>
-        <p className="text-[26px] mt-2.5 font-bold">Restaurants to explore</p>
+        <p className="text-xl md:text-[26px] mt-2 md:mt-2.5 font-bold">
+          Restaurants to explore
+        </p>
       </div>
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="flex flex-wrap gap-3 md:gap-12 md:px-14 md:my-4 justify-center ">
         {foodRestaurant.map((restaurant) => (
           <Link
             key={restaurant?.card?.card?.info?.id}
