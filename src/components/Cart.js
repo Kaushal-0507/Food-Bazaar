@@ -19,8 +19,12 @@ const Cart = () => {
 
   if (isCartEmpty) {
     return (
-      <div className="flex flex-col justify-center items-center gap-2.5 p-4">
-        <img src="./shoppingCart.png" className="w-2xs" alt="Empty Cart" />
+      <div className="flex flex-col justify-center items-center gap-2.5 p-4 mt-4 md:mt-0">
+        <img
+          src="https://raw.githubusercontent.com/Kaushal-0507/images/refs/heads/main/shoppingCart.png"
+          className="w-2xs"
+          alt="Empty Cart"
+        />
         <div className="font-bold text-[20px] text-center">
           Your cart is empty
         </div>
@@ -37,7 +41,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row justify-between mx-4 gap-6 p-2">
+    <div className="flex flex-col md:flex-row justify-between mx-4 mt-4 md:mt-0 gap-6 p-2">
       <div className="w-full md:w-[820px] p-2.5">
         <div className="flex justify-between px-1.5 items-center mb-4">
           <div className="font-bold text-2xl">Cart</div>

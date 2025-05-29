@@ -10,27 +10,41 @@ const Body = () => {
   const [restaurantList, setRestaurantLists] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [foodList, setFoodList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(RESTAURANT_API);
-    const json = await data.json();
-    console.log(json);
-    const resObj =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setRestaurantLists(resObj);
-    setFilteredRestaurants(resObj);
-    const foodObj = json?.data?.cards[0]?.card?.card.imageGridCards.info;
-    setFoodList(foodObj);
+    try {
+      setIsLoading(true);
+      const data = await fetch(RESTAURANT_API);
+      const json = await data.json();
+
+      const resObj =
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants || [];
+      setRestaurantLists(resObj);
+      setFilteredRestaurants(resObj);
+
+      const foodObj =
+        json?.data?.cards[0]?.card?.card?.imageGridCards?.info || [];
+      setFoodList(foodObj);
+    } catch (error) {
+      console.error("Error", error);
+      setRestaurantLists([]);
+      setFoodList([]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  return restaurantList.length === 0 ? (
-    <Shimmer />
-  ) : (
+  if (isLoading) {
+    return <Shimmer />;
+  }
+
+  return (
     <div className="bg-white rounded-lg p-1 pb-3 mt-4">
       <div className="flex justify-center my-3 md:my-0 mb-6 md:mb-10 px-2 md:px-0 ">
         <img

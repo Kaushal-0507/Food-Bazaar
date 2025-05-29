@@ -57,8 +57,8 @@ const CartInvoice = () => {
       </button>
 
       {showSuccess && (
-        <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center z-50 p-4 ">
-          <div className="bg-white rounded-xl max-w-md w-full p-6 animate-pop-in">
+        <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center z-50 p-4 mt-24 md:mt-0  ">
+          <div className="bg-white rounded-xl max-w-md w-full p-6">
             <div className="flex justify-end">
               <button
                 onClick={() => setShowSuccess(false)}

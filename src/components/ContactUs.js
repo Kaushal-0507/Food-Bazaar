@@ -90,7 +90,7 @@ const ContactUs = () => {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="bg-white p-2 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">
               Quick Support
             </h2>
