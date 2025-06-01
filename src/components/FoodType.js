@@ -17,7 +17,7 @@ const FoodType = () => {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.4103104&lng=72.8365911&collection=${resId}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
+        `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.4103104&lng=72.8365911&collection=${resId}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
       );
       const json = await data.json();
       setFoodType(json?.data);
