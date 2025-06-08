@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-// import About from "./components/About";
+import About from "./components/About";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
@@ -12,8 +12,6 @@ import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 import FoodType from "./components/FoodType";
 import ContactUs from "./components/ContactUs";
-
-const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   const onlineStatus = uesOnlineStatus();
@@ -49,20 +47,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: (
-          <Suspense fallback={<h1>LOADING...........</h1>}>
-            <About />
-          </Suspense>
-        ),
+        element: <About />,
         errorElement: <Error />,
       },
       {
         path: "/contact",
-        element: (
-          <Suspense fallback={<h1>LOADING...........</h1>}>
-            <ContactUs />
-          </Suspense>
-        ),
+        element: <ContactUs />,
         errorElement: <Error />,
       },
       {
