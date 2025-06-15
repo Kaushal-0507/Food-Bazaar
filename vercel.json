@@ -1,26 +1,8 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
   "routes": [
     {
-      "src": "/api/restaurants",
-      "dest": "/api/restaurants"
-    },
-    {
-      "src": "/api/menu",
-      "dest": "/api/menu"
+      "src": "/api/.*",
+      "dest": "/api"
     },
     {
       "src": "/static/(.*)",
@@ -29,7 +11,7 @@
       }
     },
     {
-      "src": "/(.*)",
+      "src": "/.*",
       "dest": "/index.html"
     }
   ]
