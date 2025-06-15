@@ -2,18 +2,30 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.js",
+      "src": "api/**/*.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "src/index.html",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist",
+        "output": "static"
+      }
     }
   ],
   "routes": [
     {
       "src": "/api/restaurants",
-      "dest": "/api/restaurants/index.js"
+      "dest": "/api/restaurants"
     },
     {
       "src": "/api/menu",
-      "dest": "/api/menu/index.js"
+      "dest": "/api/menu"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
