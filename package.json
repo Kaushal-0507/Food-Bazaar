@@ -6,8 +6,7 @@
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html --public-url ./",
     "start": "npm run dev",
-    "test": "jest",
-    "watch-test": "jest --watch"
+    "vercel-build": "npm run build"
   },
   "author": "Kaushal Kishore",
   "license": "ISC",

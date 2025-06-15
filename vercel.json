@@ -6,11 +6,10 @@
       "use": "@vercel/node"
     },
     {
-      "src": "src/index.html",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist",
-        "output": "static"
+        "distDir": "dist"
       }
     }
   ],
@@ -22,6 +21,12 @@
     {
       "src": "/api/menu",
       "dest": "/api/menu"
+    },
+    {
+      "src": "/static/(.*)",
+      "headers": {
+        "Cache-Control": "s-maxage=31536000, immutable"
+      }
     },
     {
       "src": "/(.*)",
