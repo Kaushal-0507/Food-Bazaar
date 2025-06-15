@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/restaurants",
+      "dest": "/api/restaurants/index.js"
+    },
+    {
+      "src": "/api/menu",
+      "dest": "/api/menu/index.js"
+    }
+  ]
+}
