@@ -1,5 +1,4 @@
-import React, { lazy, Suspense } from "react";
-import ReactDOM from "react-dom/client";
+import React from "react";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import About from "./components/About";
@@ -75,9 +74,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+const App = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default App;
