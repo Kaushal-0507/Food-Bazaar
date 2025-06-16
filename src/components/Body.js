@@ -19,8 +19,19 @@ const Body = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
+      console.log('Fetching data from:', RESTAURANT_API);
+      
       const data = await fetch(RESTAURANT_API);
+      if (!data.ok) {
+        throw new Error(`HTTP error! status: ${data.status}`);
+      }
+      
       const json = await data.json();
+      console.log('Received data:', json);
+
+      if (!json?.data?.cards) {
+        throw new Error('Invalid data structure received from API');
+      }
 
       const resObj =
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
@@ -32,7 +43,7 @@ const Body = () => {
         json?.data?.cards[0]?.card?.card?.imageGridCards?.info || [];
       setFoodList(foodObj);
     } catch (error) {
-      console.error("Error", error);
+      console.error("Error fetching data:", error.message);
       setRestaurantLists([]);
       setFoodList([]);
     } finally {
@@ -90,7 +101,7 @@ const Body = () => {
         />
       </div>
 
-      <div className="flex flex-wrap gap-4 px-4 md:px-12 justify-center">
+      <div className="flex flex-wrap gap-4 px-4 md:px-12 justify-center md:justify-start">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant.info.id}

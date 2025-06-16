@@ -54,7 +54,7 @@ const RestaurantMenu = () => {
   return (
     <div className="menu-part w-full md:w-[800px] mx-auto px-2 md:px-0">
       <div className="res-menu-info w-full md:w-[800px] mx-auto flex flex-col">
-        <div className="res-name text-xl md:text-2xl font-extrabold pl-2 md:pl-4 mt-3 md:mt-5 mb-4 md:mb-6">
+        <div className="res-name text-xl md:text-2xl font-extrabold pl-2 md:pl-4 mt-8 md:mt-5 mb-4 md:mb-6">
           {name}
         </div>
         <div className="res-info-card w-full md:w-[97%] mx-auto flex flex-col border border-gray-200 rounded-[15px] md:rounded-[25px] p-2 md:p-3 pl-2 md:pl-4">
