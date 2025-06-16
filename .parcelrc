@@ -7,6 +7,6 @@
     "*.{js,mjs,jsx,cjs,ts,tsx}": ["@parcel/optimizer-terser"]
   },
   "packagers": {
-    "*.{js,mjs,jsx,cjs,ts,tsx}": ["@parcel/packager-js"]
+    "*.{js,mjs,jsx,cjs,ts,tsx}": "@parcel/packager-js"
   }
 }
