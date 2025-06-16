@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply box-border m-0 p-0 font-sans overflow-y-scroll pt-[70px];
+}
+
+.hide-scrollbar {
+  @apply overflow-y-scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+} 
