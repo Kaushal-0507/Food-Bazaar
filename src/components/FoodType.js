@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 
 const FoodType = () => {
   const { resId } = useParams();
-  console.log(resId);
-
   const [foodType, setFoodType] = useState(null);
 
   useEffect(() => {
@@ -16,31 +14,43 @@ const FoodType = () => {
 
   const fetchData = async () => {
     try {
-      const data = await fetch(
-        `${import.meta.env.VITE_SWIGGY_API_URL}/api/restaurants/collection?collection=${resId}`
-      );
+      // Log the environment variable to debug
+      console.log("API URL:", import.meta.env.VITE_SWIGGY_API_URL);
+      
+      const apiUrl = `${import.meta.env.VITE_SWIGGY_API_URL}/api/restaurants/collection?collection=${resId}`;
+      console.log("Full API URL:", apiUrl);
+
+      const data = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (!data.ok) {
+        throw new Error(`HTTP error! status: ${data.status}`);
+      }
+      
       const json = await data.json();
       setFoodType(json?.data);
 
-      console.log(json?.data);
+      console.log("Response data:", json?.data);
     } catch (error) {
       console.error("Fetch error:", error);
     }
   };
-  console.log("Current foodType state:", foodType);
+
   if (!foodType) {
-    console.log("Rendering Shimmer");
     return <Shimmer />;
   }
 
   const { title, description } = foodType?.cards[0]?.card?.card || {};
-  console.log(foodType?.cards);
   const foodRestaurant = foodType?.cards.filter(
     (c) =>
       c?.card?.card?.["@type"] ===
       "type.googleapis.com/swiggy.presentation.food.v2.Restaurant"
   );
-  console.log(foodRestaurant);
 
   return (
     <div className="p-2 md:p-2.5">

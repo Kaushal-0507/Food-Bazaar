@@ -5,9 +5,14 @@ const axios = require('axios');
 const app = express();
 const PORT = 5001; // Changed port to 5001
 
-// Enable CORS for your frontend - allow any localhost port
+// Enable CORS for your frontend - allow both localhost and deployed domain
 app.use(cors({
-  origin: /^http:\/\/localhost:\d+$/
+  origin: [
+    /^http:\/\/localhost:\d+$/,
+    'https://foodbazaar.vercel.app',
+    'https://foodbazaar-git-main-kaushal0507.vercel.app'
+  ],
+  credentials: true
 }));
 
 // Common headers for Swiggy API
