@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: namaste-react
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+      - type: rewrite
+        source: /api/*
+        destination: /backend/server.js
+    healthCheckPath: /
+    autoDeploy: true 

@@ -17,8 +17,10 @@ export const MENU_CARD_IMG =
 const DEFAULT_LAT = '19.4103104';
 const DEFAULT_LNG = '72.8365911';
 
-// Backend API base URL
-const API_BASE_URL = 'http://localhost:5001';
+// Backend API base URL - use environment variable in production
+const API_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? '' // Empty string for production to use relative URLs
+  : 'http://localhost:5001';
 
 export const MENU_RES_URL = `${API_BASE_URL}/api/menu?restaurantId=`;
 
