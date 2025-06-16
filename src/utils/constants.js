@@ -14,13 +14,12 @@ export const MENU_CARD_IMG =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
 
 // Default coordinates (Mumbai)
-const DEFAULT_LAT = "19.4103104";
-const DEFAULT_LNG = "72.8365911";
+const DEFAULT_LAT = '19.4103104';
+const DEFAULT_LNG = '72.8365911';
 
-// Backend API base URL - use environment variable in production
-const API_BASE_URL =
-  import.meta.env.VITE_SWIGGY_API_URL || "http://localhost:5001";
+// Backend API base URL
+const API_BASE_URL = import.meta.env.VITE_SWIGGY_API_URL || 'http://localhost:5001';
 
+// API endpoints
 export const MENU_RES_URL = `${API_BASE_URL}/api/menu?restaurantId=`;
-
 export const RESTAURANT_API = `${API_BASE_URL}/api/restaurants?lat=${DEFAULT_LAT}&lng=${DEFAULT_LNG}`;
