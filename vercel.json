@@ -1,18 +1,11 @@
 {
-  "routes": [
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "parcel",
+  "rewrites": [
     {
-      "src": "/api/.*",
-      "dest": "/api"
-    },
-    {
-      "src": "/static/(.*)",
-      "headers": {
-        "Cache-Control": "s-maxage=31536000, immutable"
-      }
-    },
-    {
-      "src": "/.*",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
