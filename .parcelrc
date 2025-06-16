@@ -1,14 +1,14 @@
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.{js,mjs,jsx,cjs,ts,tsx}": ["@parcel/transformer-js", "..."],
-    "*.{css,pcss}": ["@parcel/transformer-css", "..."],
-    "*.{html,htm}": ["@parcel/transformer-html", "..."]
+    "*.{js,mjs,jsx,cjs,ts,tsx}": ["@parcel/transformer-js"],
+    "*.{css,pcss}": ["@parcel/transformer-postcss", "@parcel/transformer-css"],
+    "*.{html,htm}": ["@parcel/transformer-html"]
   },
   "optimizers": {
-    "*.{js,mjs,jsx,cjs,ts,tsx}": ["@parcel/optimizer-terser", "..."],
-    "*.{css,pcss}": ["@parcel/optimizer-css", "..."],
-    "*.{html,htm}": ["@parcel/optimizer-htmlnano", "..."]
+    "*.{js,mjs,jsx,cjs,ts,tsx}": ["@parcel/optimizer-terser"],
+    "*.{css,pcss}": ["@parcel/optimizer-css"],
+    "*.{html,htm}": ["@parcel/optimizer-htmlnano"]
   },
   "packagers": {
     "*.{js,mjs,jsx,cjs,ts,tsx}": "@parcel/packager-js",
