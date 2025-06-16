@@ -46,6 +46,30 @@ app.get('/api/restaurants', async (req, res) => {
   }
 });
 
+// Proxy endpoint for collection-based restaurant list
+app.get('/api/restaurants/collection', async (req, res) => {
+  try {
+    const { collection } = req.query;
+    
+    if (!collection) {
+      return res.status(400).json({ error: 'Collection ID is required' });
+    }
+    
+    console.log('Fetching restaurants for collection:', collection);
+    
+    const response = await axios.get(
+      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${DEFAULT_LAT}&lng=${DEFAULT_LNG}&collection=${collection}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`,
+      { headers: swiggyHeaders }
+    );
+    
+    console.log('Collection restaurant data received:', response.data ? 'Success' : 'No data');
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching collection restaurants:', error.message);
+    res.status(500).json({ error: 'Failed to fetch collection restaurants', details: error.message });
+  }
+});
+
 // Proxy endpoint for menu
 app.get('/api/menu', async (req, res) => {
   try {
