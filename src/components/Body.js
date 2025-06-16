@@ -101,7 +101,7 @@ const Body = () => {
         />
       </div>
 
-      <div className="flex flex-wrap gap-4 md:mx-16 px-4 md:px-12 justify-center md:justify-start">
+      <div className="flex flex-wrap justify-center gap-y-4 md:gap-6 md:px-[150px]">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant.info.id}

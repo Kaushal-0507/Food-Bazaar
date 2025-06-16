@@ -10,12 +10,21 @@ module.exports = {
         sans: ["Arial", "Helvetica", "sans-serif"],
       },
       animation: {
-        shimmer: "shimmer 2s infinite linear",
+        shimmer: "shimmer 2s infinite ease-in-out",
       },
       keyframes: {
         shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
+          "0%": { 
+            backgroundPosition: "-200% 0",
+            opacity: "0.5"
+          },
+          "50%": {
+            opacity: "1"
+          },
+          "100%": { 
+            backgroundPosition: "200% 0",
+            opacity: "0.5"
+          },
         },
       },
       backgroundSize: {
