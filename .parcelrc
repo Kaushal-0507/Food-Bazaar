@@ -14,5 +14,8 @@
     "*.{js,mjs,jsx,cjs,ts,tsx}": "@parcel/packager-js",
     "*.{css,pcss}": "@parcel/packager-css",
     "*.{html,htm}": "@parcel/packager-html"
+  },
+  "runtime": {
+    "react-refresh": false
   }
 }
