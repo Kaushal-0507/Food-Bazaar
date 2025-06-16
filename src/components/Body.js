@@ -19,18 +19,18 @@ const Body = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      console.log('Fetching data from:', RESTAURANT_API);
-      
+      console.log("Fetching data from:", RESTAURANT_API);
+
       const data = await fetch(RESTAURANT_API);
       if (!data.ok) {
         throw new Error(`HTTP error! status: ${data.status}`);
       }
-      
+
       const json = await data.json();
-      console.log('Received data:', json);
+      console.log("Received data:", json);
 
       if (!json?.data?.cards) {
-        throw new Error('Invalid data structure received from API');
+        throw new Error("Invalid data structure received from API");
       }
 
       const resObj =
@@ -101,7 +101,7 @@ const Body = () => {
         />
       </div>
 
-      <div className="flex flex-wrap gap-4 px-4 md:px-12 justify-center md:justify-start">
+      <div className="flex flex-wrap gap-4 md:mx-16 px-4 md:px-12 justify-center md:justify-start">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant.info.id}
