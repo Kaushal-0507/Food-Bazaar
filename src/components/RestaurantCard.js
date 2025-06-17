@@ -6,15 +6,15 @@ const RestaurantCard = (props) => {
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
     resData.info;
   return (
-    <div className="res-card p-2 bg-white w-[300px] md:w-[280px] rounded-xl flex flex-col gap-1 shadow-md transition-transform duration-400 hover:scale-95 hover:shadow-lg">
+    <div className="res-card p-2 bg-white w-[280px] md:w-[280px] rounded-xl flex flex-col gap-1 shadow-md transition-transform duration-400 hover:scale-95 hover:shadow-lg">
       <div className="res-card-img flex justify-center mb-1">
         <img
-          className="card-img w-[300px] md:w-[280px] h-[180px] md:h-[150px] rounded-xl object-cover"
+          className="card-img w-[280px] md:w-[280px] h-[150px] md:h-[150px] rounded-xl object-cover"
           src={CDN_URL + cloudinaryImageId}
           alt={name}
         />
       </div>
-      <div className="res-card-name truncate font-semibold text-base md:text-sm">{name}</div>
+      <div className="res-card-name truncate font-semibold text-sm">{name}</div>
       <p className="cost-two ml-2 text-sm font-semibold text-red-600">
         {costForTwo}
       </p>
@@ -23,7 +23,7 @@ const RestaurantCard = (props) => {
         <p className="res-ratings mr-2">{avgRating}</p>
         <p className="res-timing">{sla.slaString}</p>
       </div>
-      <p className="res-cuisine truncate text-gray-500 text-xs md:text-xs">
+      <p className="res-cuisine truncate text-gray-500 text-xs">
         {cuisines.join(", ")}
       </p>
     </div>
