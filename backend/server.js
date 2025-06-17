@@ -15,7 +15,7 @@ app.use(cors({
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Accept', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Accept', 'Authorization', 'Cache-Control']
 }));
 
 // Add request logging middleware

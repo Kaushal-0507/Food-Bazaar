@@ -17,8 +17,10 @@ export const MENU_CARD_IMG =
 const DEFAULT_LAT = '19.4103104';
 const DEFAULT_LNG = '72.8365911';
 
-// Backend API base URL
-const API_BASE_URL = import.meta.env.VITE_SWIGGY_API_URL || 'http://localhost:5001';
+// Backend API base URL - use deployed URL for production
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://foodbazaar-backend.onrender.com'
+  : (import.meta.env.VITE_SWIGGY_API_URL || 'http://localhost:5001');
 
 // Log the API URL for debugging
 console.log('API Base URL:', API_BASE_URL);
