@@ -11,6 +11,7 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [foodList, setFoodList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -19,15 +20,36 @@ const Body = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      console.log("Fetching data from:", RESTAURANT_API);
+      setError(null);
+      
+      // Log device information
+      console.log('User Agent:', navigator.userAgent);
+      console.log('Platform:', navigator.platform);
+      console.log('Fetching data from:', RESTAURANT_API);
 
-      const data = await fetch(RESTAURANT_API);
+      const data = await fetch(RESTAURANT_API, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache'
+        },
+        credentials: 'include'
+      });
+
+      console.log('Response status:', data.status);
+      console.log('Response headers:', Object.fromEntries(data.headers.entries()));
+
       if (!data.ok) {
         throw new Error(`HTTP error! status: ${data.status}`);
       }
 
       const json = await data.json();
-      console.log("Received data:", json);
+      console.log("Received data structure:", {
+        hasData: !!json?.data,
+        hasCards: !!json?.data?.cards,
+        cardsLength: json?.data?.cards?.length
+      });
 
       if (!json?.data?.cards) {
         throw new Error("Invalid data structure received from API");
@@ -36,14 +58,29 @@ const Body = () => {
       const resObj =
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants || [];
+      
+      console.log("Restaurant objects count:", resObj.length);
+      
+      if (resObj.length === 0) {
+        console.warn("No restaurants found in the response");
+      }
+
       setRestaurantLists(resObj);
       setFilteredRestaurants(resObj);
 
       const foodObj =
         json?.data?.cards[0]?.card?.card?.imageGridCards?.info || [];
+      
+      console.log("Food objects count:", foodObj.length);
+      
+      if (foodObj.length === 0) {
+        console.warn("No food items found in the response");
+      }
+
       setFoodList(foodObj);
     } catch (error) {
       console.error("Error fetching data:", error.message);
+      setError(error.message);
       setRestaurantLists([]);
       setFoodList([]);
     } finally {
@@ -53,6 +90,20 @@ const Body = () => {
 
   if (isLoading) {
     return <Shimmer />;
+  }
+
+  if (error) {
+    return (
+      <div className="text-center p-4">
+        <p className="text-red-500">Error loading data: {error}</p>
+        <button 
+          onClick={fetchData}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Retry
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -102,15 +153,27 @@ const Body = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 md:gap-4 px-4 md:px-[60px]">
-        {filteredRestaurants.map((restaurant) => (
-          <Link
-            key={restaurant.info.id}
-            to={"/restaurant/" + restaurant.info.id}
-            className="no-underline text-inherit"
-          >
-            <RestaurantCard resData={restaurant} />
-          </Link>
-        ))}
+        {filteredRestaurants.length === 0 ? (
+          <div className="text-center w-full py-4">
+            <p className="text-gray-500">No restaurants found</p>
+            <button 
+              onClick={fetchData}
+              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              Refresh
+            </button>
+          </div>
+        ) : (
+          filteredRestaurants.map((restaurant) => (
+            <Link
+              key={restaurant.info.id}
+              to={"/restaurant/" + restaurant.info.id}
+              className="no-underline text-inherit"
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

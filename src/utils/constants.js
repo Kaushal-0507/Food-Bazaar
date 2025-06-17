@@ -20,6 +20,12 @@ const DEFAULT_LNG = '72.8365911';
 // Backend API base URL
 const API_BASE_URL = import.meta.env.VITE_SWIGGY_API_URL || 'http://localhost:5001';
 
+// Log the API URL for debugging
+console.log('API Base URL:', API_BASE_URL);
+
 // API endpoints
 export const MENU_RES_URL = `${API_BASE_URL}/api/menu?restaurantId=`;
 export const RESTAURANT_API = `${API_BASE_URL}/api/restaurants?lat=${DEFAULT_LAT}&lng=${DEFAULT_LNG}`;
+
+// Log the full restaurant API URL for debugging
+console.log('Restaurant API URL:', RESTAURANT_API);

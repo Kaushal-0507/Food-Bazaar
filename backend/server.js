@@ -10,10 +10,19 @@ app.use(cors({
   origin: [
     /^http:\/\/localhost:\d+$/,
     'https://foodbazaar.vercel.app',
-    'https://foodbazaar-git-main-kaushal0507.vercel.app'
+    'https://foodbazaar-git-main-kaushal0507.vercel.app',
+    /^https:\/\/foodbazaar.*\.vercel\.app$/
   ],
-  credentials: true
+  methods: ['GET', 'POST', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Accept', 'Authorization']
 }));
+
+// Add request logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
 
 // Common headers for Swiggy API
 const swiggyHeaders = {
