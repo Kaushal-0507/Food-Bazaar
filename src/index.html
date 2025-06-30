@@ -4,10 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Bazaar</title>
+    
+    <!-- Performance optimizations -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="A modern food delivery app" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://foodbazaar-backend.onrender.com" />
+    <link rel="preconnect" href="https://media-assets.swiggy.com" />
+    <link rel="preconnect" href="https://s3.amazonaws.com" />
+    
+    <!-- DNS prefetch for faster loading -->
+    <link rel="dns-prefetch" href="//foodbazaar-backend.onrender.com" />
+    <link rel="dns-prefetch" href="//media-assets.swiggy.com" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../index.css" as="style" />
+    <link rel="preload" href="./app.js" as="script" />
+    
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/m/seo/Food_collectionbanner.png" />
+    
     <link rel="stylesheet" href="../index.css" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="./app.js"></script>
+    
+    <!-- Performance monitoring -->
+    <script>
+      // Report web vitals
+      if ('performance' in window) {
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            const navigation = performance.getEntriesByType('navigation')[0];
+            if (navigation) {
+              console.log('Page Load Time:', navigation.loadEventEnd - navigation.loadEventStart, 'ms');
+              console.log('DOM Content Loaded:', navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart, 'ms');
+            }
+          }, 0);
+        });
+      }
+    </script>
   </body>
 </html>

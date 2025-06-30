@@ -10,7 +10,7 @@ const RestaurantMenu = () => {
   const [mainCategories, setMainCategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isVegFilterActive, setIsVegFilterActive] = useState(false);
-  const resInfo = useRestaurantMenu(resId);
+  const { resInfo, isLoading, error, refetch } = useRestaurantMenu(resId);
 
   useEffect(() => {
     if (resInfo) {
@@ -24,6 +24,28 @@ const RestaurantMenu = () => {
       setCategories(menuItems || []);
     }
   }, [resInfo]);
+
+  if (isLoading) return <Shimmer />;
+
+  if (error) {
+    return (
+      <div className="menu-part w-full md:w-[800px] mx-auto px-2 md:px-0 text-center py-8">
+        <div className="mb-4">
+          <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+          </svg>
+        </div>
+        <h3 className="text-lg font-medium text-gray-900 mb-2">Failed to load menu</h3>
+        <p className="text-gray-500 mb-4">{error}</p>
+        <button 
+          onClick={refetch}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
 
   if (!resInfo) return <Shimmer />;
 
@@ -62,6 +84,8 @@ const RestaurantMenu = () => {
             <img
               className="rating-icon w-[14px] md:w-[18px]"
               src={RATING_ICON}
+              alt="Rating"
+              loading="lazy"
             />
             <p className="ml-1">
               {avgRating} - {costForTwoMessage?.toUpperCase()}
@@ -87,7 +111,7 @@ const RestaurantMenu = () => {
                 isVegFilterActive
                   ? "border-red-400 border-[2px] text-red-400"
                   : "border-green-600 border-[2px]"
-              } bg-white mb-1 md:mb-2 rounded-lg md:rounded-xl text-sm md:text-base font-bold cursor-pointer text-green-600`}
+              } bg-white mb-1 md:mb-2 rounded-lg md:rounded-xl text-sm md:text-base font-bold cursor-pointer text-green-600 transition-colors`}
               onClick={toggleVegFilter}
             >
               {isVegFilterActive ? "Show All" : "Veg Only"}
